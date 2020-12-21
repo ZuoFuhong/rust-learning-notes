@@ -3,8 +3,10 @@ name = "rust-learning-notes"
 version = "0.1.0"
 authors = ["zfh <fuhongzuo@gmail.com>"]
 edition = "2018"
+description = "rust learning notes"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 ferris-says = "0.2"
+clap = "2.32.0"
