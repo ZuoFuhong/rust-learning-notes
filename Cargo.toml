@@ -8,6 +8,10 @@ description = "rust learning notes"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+[dev-dependencies]
+tempfile = "3.0.7"
 ferris-says = "0.2"
 clap = "2.32.0"
 predicates = "1.0.5"
+walkdir = "2.2.7"
