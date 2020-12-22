@@ -10,3 +10,4 @@ description = "rust learning notes"
 [dependencies]
 ferris-says = "0.2"
 clap = "2.32.0"
+predicates = "1.0.5"
