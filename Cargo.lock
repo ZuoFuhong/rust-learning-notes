@@ -128,6 +128,26 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b700ce4376041dcd0a327fd0097c41095743c4c8af8887265942faf1100bd040"
 
 [[package]]
+name = "cathy"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "env_logger",
+ "ferris-says",
+ "log",
+ "mini-redis",
+ "predicates",
+ "rand 0.6.5",
+ "serde",
+ "serde_json",
+ "sled",
+ "structopt",
+ "tempfile",
+ "tokio",
+ "walkdir",
+]
+
+[[package]]
 name = "cfg-if"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -824,26 +844,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3acd125665422973a33ac9d3dd2df85edad0f4ae9b00dafb1a05e43a9f5ef8e7"
 dependencies = [
  "winapi",
-]
-
-[[package]]
-name = "rust-learning-notes"
-version = "0.1.0"
-dependencies = [
- "clap",
- "env_logger",
- "ferris-says",
- "log",
- "mini-redis",
- "predicates",
- "rand 0.6.5",
- "serde",
- "serde_json",
- "sled",
- "structopt",
- "tempfile",
- "tokio",
- "walkdir",
 ]
 
 [[package]]
