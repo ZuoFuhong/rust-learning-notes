@@ -1,6 +1,25 @@
 //! Multithreaded Web Server
 //!
-//! 使用线程池异步响应的基本Web服务器，可以正常的关闭服务器，以清理池中的所有线程。
+//! 目标：使用线程池异步响应的基本Web服务器，可以正常的关闭服务器，以清理池中的所有线程。
+//! 启动流程：
+//! 1.创建线程池
+//! 2.创建 channel 生产、消费对象（在多线程中使用Arc计数Mutex引用，其中channel的receiver置于Mutex中）
+//! 3.创建指定数量的worker线程持续消费channel中的任务。
+//! 4.创建TCP服务端，主线程持续监听新连接。
+//!
+//! 请求处理流程：
+//! 1.服务端主线程接受到客户端TCP连接
+//! 2.创建一个闭包处理新连接
+//! 3.主线程将闭包分配到线程池channel中（闭包使用Box分配堆内存）
+//! 4.线程池中的worker线程持续从channel中获取闭包
+//! 5.执行闭包，从TCP连接中读取请求数据，做出处理回包。
+//!
+//! 停机流程：
+//! 1.TCP服务端中断后，ThreadPool将在main末尾超出范围，Drop实现将运行。
+//! 2.ThreadPool的Drop方法第一次遍历worker线程组 发送terminate消息。
+//! 3.ThreadPool的Drop方法第一次遍历worker线程组 执行worker线程join方法，直到线程结束。
+//! 4.worker线程收到terminate消息后结束线程。
+//! 5.当所有的worker线程都结束后，主线程也随之结束，最后进程结束。
 
 use std::io::{Read, Write};
 use std::net::{TcpListener, TcpStream};
